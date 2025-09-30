@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shënime</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans p-6">
+
+<div class="container mx-auto max-w-3xl bg-white p-6 rounded-3xl shadow-xl">
+    <h1 id="noteTitle" class="text-3xl font-bold mb-4 text-gray-800 text-center">Shënime</h1>
+
+    <div id="newNoteBox" class="mb-6">
+        <textarea id="noteText" placeholder="Shkruaj shënimin e ri..." 
+                  class="w-full h-32 border border-gray-300 rounded-xl p-4 mb-2 text-lg focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+        <button id="addNoteBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-xl shadow-lg">
+            Shto shënim
+        </button>
+    </div>
+
+    <div id="notesContainer" class="space-y-4">
+        <!-- Shënimet e ruajtura do shfaqen këtu -->
+    </div>
+
+    <div class="flex justify-center mt-4 space-x-4">
+        <button id="printAllBtn" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-6 rounded-xl shadow-lg">
+            Printo / Eksporto të gjitha shënimet
+        </button>
+        <button onclick="window.history.back()" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-xl shadow-lg">
+            Kthehu Mbrapa
+        </button>
+    </div>
+</div>
+
+<script src="notes.js"></script>
+</body>
+</html>

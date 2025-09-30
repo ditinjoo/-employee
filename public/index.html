@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kërko Punëtorë</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>
+  body {
+    background-image: url('images/image.webp'); /* fotoja jote */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  /* Overlay për kontrast më të mirë për butonat */
+  body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,0,0.25); /* errësim i lehtë */
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 10; /* butonat mbi overlay */
+  }
+  
+</style>
+
+
+
+<div class="container mx-auto p-6">
+    <h1 class="text-4xl font-extrabold text-center mb-8 text-gray-800">Kërko Punëtorë</h1>
+
+    <!-- Butonat kryesorë -->
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-6 mb-8">
+        <button onclick="showInput('NrP')" 
+                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg text-lg transition transform hover:-translate-y-1">
+            Trego numrin e punës
+        </button>
+        <button onclick="showInput('Emri')" 
+                class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg text-lg transition transform hover:-translate-y-1">
+            Trego emrin
+        </button>
+        <button onclick="showInput('Mbiemri')" 
+                class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg text-lg transition transform hover:-translate-y-1">
+            Trego mbiemrin
+        </button>
+        <button onclick="window.location.href='notes.html?note=Trego Konvejerin'" 
+                class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg text-lg transition transform hover:-translate-y-1">
+            Trego Konvejerin
+        </button>
+    </div>
+    
+    <!-- Kutia e kërkimit -->
+    <div id="searchBox" class="hidden max-w-md mx-auto bg-white p-6 rounded-2xl shadow-xl">
+        <input id="searchInput" type="text" placeholder="Shkruaj të dhënat" 
+               class="w-full border border-gray-300 rounded-xl px-4 py-3 mb-4 text-lg focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-inner" />
+        <button id="searchBtn" 
+                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-xl w-full text-lg shadow-md transition transform hover:-translate-y-1">
+            Kërko
+        </button>
+    </div> <br>
+
+    <!-- Butonat e rinj për notes -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+        <button onclick="window.location.href='notes.html?note=Trego Makinen e Kombinuar'" 
+                class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg text-lg transition transform hover:-translate-y-1">
+            Trego Makinen e Kombinuar
+        </button>
+        <button onclick="window.location.href='notes.html?note=Trego Pozicionin'" 
+                class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg text-lg transition transform hover:-translate-y-1">
+            Trego Pozicionin
+        </button>
+        <button onclick="window.location.href='notes.html?note=Trego Eskavatorin'" 
+                class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg text-lg transition transform hover:-translate-y-1">
+            Trego Eskavatorin
+        </button>
+    </div>
+
+
+    <!-- Butoni shiko të gjithë punëtorët -->
+    <div class="flex justify-center mt-8">
+      <button onclick="window.location.href='all-employees.html'" 
+              class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg text-lg transition transform hover:-translate-y-1">
+        Shiko të gjithë punëtorët
+      </button>
+    </div>
+</div>
+
+<script>
+let searchField = '';
+
+function showInput(field) {
+    searchField = field;
+    const searchBox = document.getElementById('searchBox');
+    searchBox.classList.remove('hidden');
+    document.getElementById('searchInput').placeholder = `Shkruaj ${field} e punëtorit`;
+}
+
+// Kur klikojmë Kërko, shkojmë te faqja e dytë me query
+document.getElementById('searchBtn').addEventListener('click', () => {
+    const value = document.getElementById('searchInput').value.trim();
+    if (value) {
+        window.location.href = `details.html?field=${searchField}&q=${encodeURIComponent(value)}`;
+    }
+});
+</script>
+<!-- Butoni për të shfaqur autorin -->
+<button onclick="openAuthorModal()" 
+        class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-4 px-6 rounded-xl shadow-lg text-lg transition transform hover:-translate-y-1">
+    Shiko Autorin e Programit
+</button>
+
+<!-- Modal -->
+<div id="authorModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
+  <div class="bg-white p-8 rounded-3xl shadow-2xl max-w-md text-center">
+    <h2 class="text-4xl font-extrabold text-gray-900 mb-4">Autori i Programit</h2>
+    <p class="text-2xl text-gray-800">Xhavit Aliu</p>
+    <button onclick="closeAuthorModal()" 
+            class="mt-6 bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-xl text-lg">
+      Mbyll
+    </button>
+  </div>
+</div>
+
+<script>
+function openAuthorModal() {
+    document.getElementById('authorModal').classList.remove('hidden');
+    document.getElementById('authorModal').classList.add('flex');
+}
+
+function closeAuthorModal() {
+    document.getElementById('authorModal').classList.add('hidden');
+    document.getElementById('authorModal').classList.remove('flex');
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Të gjithë punëtorët</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans p-6">
+<h1 class="text-3xl font-extrabold mb-6 text-center text-gray-800">Lista e plotë e punëtorëve</h1>
+
+<table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden" id="resultsTable">
+    <thead class="bg-gray-200">
+        <tr>
+            <th class="py-2 px-4 text-left">NrP</th>
+            <th class="py-2 px-4 text-left">NrTel</th>
+            <th class="py-2 px-4 text-left">Emri</th>
+            <th class="py-2 px-4 text-left">Mbiemri</th>
+            <th class="py-2 px-4 text-left">IDDep</th>
+            <th class="py-2 px-4 text-left">Departamenti</th>
+            <th class="py-2 px-4 text-left">VendiPunës</th>
+        </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200"></tbody>
+</table>
+
+<script src="script.js"></script>
+<script>
+    // Kur hapet kjo faqe, shfaq të gjithë punëtorët
+    window.addEventListener('DOMContentLoaded', () => {
+        search(''); // string bosh -> merr të gjithë punëtorët
+    });
+</script>
+</body>
+</html>
